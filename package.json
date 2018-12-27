@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
+    "watch": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
@@ -15,12 +16,14 @@
   "devDependencies": {
     "@types/node": "^10.12.18",
     "@types/qs": "^6.5.1",
+    "@types/yargs": "^12.0.4",
     "tslint": "^5.12.0",
     "tslint-config-airbnb": "^5.11.1",
     "tslint-react": "^3.6.0"
   },
   "dependencies": {
     "qs": "^6.6.0",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.2",
+    "yargs": "^12.0.5"
   }
 }
