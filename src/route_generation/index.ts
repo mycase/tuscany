@@ -6,7 +6,7 @@ export default (path: string, requiredArguments: string[]) => {
     });
 
     return (
-`import { generateFormatAndQuery, RequiredArg } from '../common';
+`import { generateFormatAndQuery, RequiredArg } from 'tarr';
 
 function route(${paramString}formatOrQuery?: string | object, query?: object) {
   let { formatString, queryString } = generateFormatAndQuery(formatOrQuery, query);

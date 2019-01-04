@@ -2,7 +2,7 @@
   "name": "tarr",
   "version": "1.0.0",
   "description": "A command-line utility that accepts a JSON manifest of routes and generates a folder structure of URL helpers",
-  "main": "src/index.ts",
+  "main": "dist/common.js",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
@@ -16,14 +16,14 @@
   "devDependencies": {
     "@types/node": "^10.12.18",
     "@types/qs": "^6.5.1",
-    "@types/yargs": "^12.0.4",
+    "@types/yargs": "^12.0.2",
     "tslint": "^5.12.0",
     "tslint-config-airbnb": "^5.11.1",
     "tslint-react": "^3.6.0"
   },
   "dependencies": {
     "qs": "^6.6.0",
-    "typescript": "^3.2.2",
+    "typescript": "^2.8.3",
     "yargs": "^12.0.5"
   }
 }
