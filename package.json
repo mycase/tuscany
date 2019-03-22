@@ -2,11 +2,10 @@
   "name": "tarr",
   "version": "1.0.0",
   "description": "A command-line utility that accepts a JSON manifest of routes and generates a folder structure of URL helpers",
-  "main": "dist/common.js",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "bin": {
     "tarr": "./bin/tarr"
@@ -14,9 +13,12 @@
   "author": "Robert Maloney (robertjamesmaloney@gmail.com)",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^23.3.13",
     "@types/node": "^10.12.18",
     "@types/qs": "^6.5.1",
     "@types/yargs": "^12.0.2",
+    "jest": "^23.3.0",
+    "ts-jest": "^23.10.5",
     "tslint": "^5.12.0",
     "tslint-config-airbnb": "^5.11.1",
     "tslint-react": "^3.6.0"
@@ -25,5 +27,22 @@
     "qs": "^6.6.0",
     "typescript": "^2.8.3",
     "yargs": "^12.0.5"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/test/jest"
+    ],
+    "testRegex": ".*\\.test\\.(js|ts)$",
+    "testPathIgnorePatterns": [
+      "<rootDir>/test/jest/helpers"
+    ],
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ]
   }
 }

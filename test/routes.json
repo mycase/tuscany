@@ -1,0 +1,21 @@
+{
+  "user": {
+    "users": "/users(.:format)",
+    "user": {
+      "path": "/users/:id(.:format)",
+      "req": [
+        "id"
+      ]
+    }
+  },
+  "document": {
+    "documents": "/documents(.:format)",
+    "document_version": {
+      "path": "/documents/:document_id/versions/:id(.:format)",
+      "req": [
+        "document_id",
+        "id"
+      ]
+    }
+  }
+}
