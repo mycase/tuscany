@@ -8,6 +8,8 @@ function main() {
     .usage('Usage: $0 -d [folder] -r [routes_json]')
     .demand(['d', 'r'])
     .string(['d', 'r'])
+    .describe('d', 'Directory to output generated routes')
+    .describe('r', 'Location of a JSON route manifest')
     .alias('d', 'directory')
     .alias('r', 'routes')
     .argv;
