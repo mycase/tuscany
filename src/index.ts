@@ -13,11 +13,12 @@ function main() {
     .argv;
 
   const routesLocation = argv.routes as string;
+  const routeDirectory = argv.directory as string;
   console.log(`Parsing routes at ${routesLocation}`);
   const routesConfig = parseRoutes(routesLocation);
-  const rfs = new RouteFileSystem(argv.directory as string);
+  const rfs = new RouteFileSystem(routeDirectory);
 
-  console.log(`Generating routes from manifest`);
+  console.log(`Generating routes from manifest into folder ${routeDirectory}`);
 
   Object.keys(routesConfig).forEach((controllerName) => {
     Object.keys(routesConfig[controllerName]).forEach((routeName) => {
