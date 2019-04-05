@@ -1,35 +1,37 @@
 import * as yargs from 'yargs';
-import generateRouteScript from './route_generation';
+import generateRouteSource from './route_generator';
 import RouteFileSystem from './fs';
-import * as fs from 'fs';
+import parseRoutes from './parse_routes';
 
-const argv = yargs
-  .usage('Usage: $0 -d [folder] -r [routes_json]')
-  .demand(['d', 'r'])
-  .string(['d', 'r'])
-  .alias('d', 'directory')
-  .alias('r', 'routes')
-  .argv;
+function main() {
+  const argv = yargs
+    .usage('Usage: $0 -d [folder] -r [routes_json]')
+    .demand(['d', 'r'])
+    .string(['d', 'r'])
+    .alias('d', 'directory')
+    .alias('r', 'routes')
+    .argv;
 
-console.log(`Generating routes in folder ${argv.directory}`);
+  const routesLocation = argv.routes as string;
+  console.log(`Parsing routes at ${routesLocation}`);
+  const routesConfig = parseRoutes(routesLocation);
+  const rfs = new RouteFileSystem(argv.directory as string);
 
-const routesJSON = JSON.parse(fs.readFileSync(argv.routes as string).toString());
-const rfs = new RouteFileSystem(argv.directory as string);
+  console.log(`Generating routes from manifest`);
 
-Object.keys(routesJSON).forEach((controllerKey) => {
-  Object.keys(routesJSON[controllerKey]).forEach((routeKey) => {
-    const route = routesJSON[controllerKey][routeKey];
-
-    let path, req;
-    if (typeof route === 'string') {
-      path = route;
-      req = [];
-    } else {
-      path = route.path;
-      req = route.req;
-    }
-
-    const routeSource = generateRouteScript(path, req);
-    rfs.addRouteScript(controllerKey, routeKey, routeSource);
+  Object.keys(routesConfig).forEach((controllerName) => {
+    Object.keys(routesConfig[controllerName]).forEach((routeName) => {
+      let routeInfo = routesConfig[controllerName][routeName];
+      if (typeof routeInfo === 'string') {
+        routeInfo = {
+          path: routeInfo,
+          req: [],
+        };
+      }
+      const routeSource = generateRouteSource(routeInfo.path, routeInfo.req);
+      rfs.writeRoute(controllerName, routeName, routeSource);
+    });
   });
-});
+}
+
+main();
