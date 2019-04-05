@@ -11,7 +11,7 @@ export default class RouteFileSystem {
     this.root = root;
   }
 
-  addRouteScript(controllerName: string, routeName: string, routeSource: string) {
+  writeRoute(controllerName: string, routeName: string, routeSource: string) {
     const controllerPath = pathJoin(this.root, controllerName);
     if (!fs.existsSync(controllerPath)) {
       fs.mkdirSync(controllerPath);
