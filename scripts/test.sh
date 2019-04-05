@@ -1,18 +1,29 @@
 #!/usr/bin/env bash
-npm run build
-build_response=$?
-if [[ ${build_response} -ne 0 ]]; then
-  exit ${build_response}
-fi
+readonly OUTPUT_DIR=./test/test_output
+readonly TEST_ROUTES_JSON=./test/routes.json
 
-rm -rf ./test/test_output
-mkdir ./test/test_output
+clean_output_directory() {
+  rm -rf ${OUTPUT_DIR} &&
+    mkdir ${OUTPUT_DIR}
+}
 
-./bin/tarr -d ./test/test_output -r ./test/routes.json
+generate_routes() {
+  ./bin/tarr -d ${OUTPUT_DIR} -r ${TEST_ROUTES_JSON}
+}
 
-npm run test
+exit_early_if_failure() {
+  ec=$?
+  if [[ ${ec} -ne 0 ]]; then
+    exit ${ec}
+  fi
+}
+
+clean_output_directory && generate_routes
+exit_early_if_failure
+
+./node_modules/.bin/jest
 test_response=$?
 
-rm -rf ./test/test_output
+rm -rf ${OUTPUT_DIR}
 
 exit ${test_response}
