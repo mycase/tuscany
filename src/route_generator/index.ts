@@ -18,17 +18,22 @@ ${requiredArgDefinition}
 function generateFormatAndQuery(
     formatOrQuery?: string | object, query?: object
 ): { formatString: string, queryString: string } {
-  let queryString = '';
-  let formatString = '';
+  let q = {};
+  let f: string | undefined = '';
+
   if (query) {
-    queryString = \`?\${stringify(query)}\`;
-    formatString = formatOrQuery ? \`.\${formatOrQuery}\` : '';
+    q = query;
+    f = formatOrQuery as string | undefined;
   } else if (typeof formatOrQuery === 'string') {
-    formatString = formatOrQuery ? \`.\${formatOrQuery}\` : '';
+    f = formatOrQuery;
   } else if (typeof formatOrQuery === 'object' && formatOrQuery !== null) {
-    queryString = \`?\${stringify(formatOrQuery)}\`;
+    q = formatOrQuery;
   }
-  return { formatString, queryString };
+
+  return {
+    formatString: f ? \`.\${f}\` : '',
+    queryString: stringify(q, { addQueryPrefix: true }),
+  };
 }
 
 function route(${paramString}): string;
