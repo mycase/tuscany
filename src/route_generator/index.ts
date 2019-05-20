@@ -13,29 +13,8 @@ export default (path: string, requiredArguments: string[]) => {
     const requiredParamSeparator = paramString ? ', ' : '';
 
     return (
-`import { stringify } from 'qs';
+`const { generateFormatAndQuery } = require('tarr');
 ${requiredArgDefinition}
-function generateFormatAndQuery(
-    formatOrQuery?: string | object, query?: object
-): { formatString: string, queryString: string } {
-  let q = {};
-  let f: string | undefined = '';
-
-  if (query) {
-    q = query;
-    f = formatOrQuery as string | undefined;
-  } else if (typeof formatOrQuery === 'string') {
-    f = formatOrQuery;
-  } else if (typeof formatOrQuery === 'object' && formatOrQuery !== null) {
-    q = formatOrQuery;
-  }
-
-  return {
-    formatString: f ? \`.\${f}\` : '',
-    queryString: stringify(q, { addQueryPrefix: true, arrayFormat: 'brackets' }),
-  };
-}
-
 function route(${paramString}): string;
 function route(${paramString}${requiredParamSeparator}format: string): string;
 function route(${paramString}${requiredParamSeparator}query: object): string;

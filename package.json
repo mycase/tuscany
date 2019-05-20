@@ -7,6 +7,7 @@
     "watch": "tsc --watch",
     "test": "npm run build && ./scripts/test.sh"
   },
+  "main": "./dist/route_utils.js",
   "bin": {
     "tarr": "./bin/tarr"
   },
@@ -45,6 +46,9 @@
       "ts",
       "js",
       "json"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^tarr$": "<rootDir>/dist/route_utils"
+    }
   }
 }
