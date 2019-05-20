@@ -1,3 +1,4 @@
+import { URL } from 'url';
 import { requireRoute } from './helpers';
 
 const usersRoute = requireRoute('user', 'users');
@@ -50,5 +51,11 @@ describe('tarr', () => {
       .toEqual('/documents/11/versions/5');
     expect(documentVersionRoute(11, 5, 'xml', null))
       .toEqual('/documents/11/versions/5.xml');
+  });
+
+  test('should use bracket syntax to render query string arrays', () => {
+    const url = new URL(usersRoute({ a: [5, 4] }), 'http://robbie');
+    expect(url.search)
+      .toEqual(`?${encodeURI('a[]=5&a[]=4')}`);
   });
 });
