@@ -51,5 +51,8 @@
     "moduleNameMapper": {
       "^tarr$": "<rootDir>/dist/route_utils"
     }
+  },
+  "publishConfig": {
+    "registry": "https://nexus.dev.appf.io/repository/npm-hosted/"
   }
 }
