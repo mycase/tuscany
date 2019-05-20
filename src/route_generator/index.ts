@@ -32,7 +32,7 @@ function generateFormatAndQuery(
 
   return {
     formatString: f ? \`.\${f}\` : '',
-    queryString: stringify(q, { addQueryPrefix: true }),
+    queryString: stringify(q, { addQueryPrefix: true, arrayFormat: 'brackets' }),
   };
 }
 
