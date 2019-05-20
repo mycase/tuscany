@@ -1,8 +1,8 @@
 export default (path: string, requiredArguments: string[]) => {
     const paramString = requiredArguments.map(arg => `${arg}: RequiredArg`).join(', ');
-    path = path.replace('(.:format)', '');
+    let basePath = path.replace('(.:format)', '');
     requiredArguments.forEach((arg) => {
-        path = path.replace(`:${arg}`, `\${${arg}}`);
+        basePath = basePath.replace(`:${arg}`, `\${${arg}}`);
     });
 
     let requiredArgDefinition =
@@ -21,7 +21,7 @@ function route(${paramString}${requiredParamSeparator}query: object): string;
 function route(${paramString}${requiredParamSeparator}format: string, query: object): string;
 function route(${paramString}${requiredParamSeparator}formatOrQuery?: string | object, query?: object) {
   let { formatString, queryString } = generateFormatAndQuery(formatOrQuery, query);
-  return \`${path}\${formatString}\${queryString}\`;
+  return \`${basePath}\${formatString}\${queryString}\`;
 }
 
 export default route;
