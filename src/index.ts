@@ -20,6 +20,9 @@ function main() {
   const routesConfig = parseRoutes(routesLocation);
   const rfs = new RouteFileSystem(routeDirectory);
 
+  console.log(`Clearing existing routes from folder ${routeDirectory}`);
+  rfs.clearRoutesDirectory();
+
   console.log(`Generating routes from manifest into folder ${routeDirectory}`);
 
   Object.keys(routesConfig).forEach((controllerName) => {

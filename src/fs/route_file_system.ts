@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import { join as pathJoin } from 'path';
+import * as rimraf from 'rimraf';
 
 export default class RouteFileSystem {
   private root: string;
@@ -9,6 +10,10 @@ export default class RouteFileSystem {
       throw new Error(`Routes folder \`${root}\` does not exist`);
     }
     this.root = root;
+  }
+
+  clearRoutesDirectory() {
+    rimraf.sync(pathJoin(this.root, '*'));
   }
 
   writeRoute(controllerName: string, routeName: string, routeSource: string) {
