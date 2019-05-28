@@ -1,5 +1,5 @@
 import * as yargs from 'yargs';
-import generateRouteSource from './route_generator';
+import generateHelperSourceCode from './url_helper_generator';
 import RouteFileSystem from './fs';
 import parseRoutes from './parse_routes';
 
@@ -36,8 +36,8 @@ async function main() {
               req: [],
             };
           }
-          const routeSource = generateRouteSource(routeInfo.path, routeInfo.req);
-          return rfs.writeRoute(controllerName, routeName, routeSource);
+          const helperSource = generateHelperSourceCode(routeInfo.path, routeInfo.req);
+          return rfs.writeRoute(controllerName, routeName, helperSource);
         })
       )
     )
