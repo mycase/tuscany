@@ -1,27 +1,40 @@
-import * as fs from 'fs';
+import { existsSync } from 'fs';
 import { join as pathJoin } from 'path';
 import * as rimraf from 'rimraf';
+import * as fsUtil from './fs_utils';
 
 export default class RouteFileSystem {
   private root: string;
 
   constructor(root: string) {
-    if (!fs.existsSync(root)) {
+    if (!existsSync(root)) {
       throw new Error(`Routes folder \`${root}\` does not exist`);
     }
     this.root = root;
   }
 
-  clearRoutesDirectory() {
-    rimraf.sync(pathJoin(this.root, '*'));
+  async clearRoutesDirectory() {
+    return new Promise((resolve, reject) => {
+      rimraf(pathJoin(this.root, '*'), (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
   }
 
-  writeRoute(controllerName: string, routeName: string, routeSource: string) {
+  async writeRoute(controllerName: string, routeName: string, routeSource: string) {
     const controllerPath = pathJoin(this.root, controllerName);
-    if (!fs.existsSync(controllerPath)) {
-      fs.mkdirSync(controllerPath);
+    try {
+      await fsUtil.mkdir(controllerPath);
+    } catch (err) {
+      if (err.code !== 'EEXIST') {
+        throw err;
+      }
     }
 
-    fs.writeFileSync(pathJoin(this.root, controllerName, `${routeName}.ts`), routeSource);
+    await fsUtil.writeFile(pathJoin(this.root, controllerName, `${routeName}.ts`), routeSource);
   }
 }
