@@ -1,6 +1,6 @@
-# Typescript Adapter for Rails Routes (TARR)
+# Tuscany
 ```bash
-Usage: tarr -d [folder] -r [routes_json]
+Usage: tuscany -d [folder] -r [routes_json]
 
 Options:
   --help           Show help                                         [boolean]

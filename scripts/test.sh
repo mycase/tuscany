@@ -8,7 +8,7 @@ clean_output_directory() {
 }
 
 generate_routes() {
-  ./bin/tarr -d ${OUTPUT_DIR} -r ${TEST_ROUTES_JSON}
+  ./bin/tuscany -d ${OUTPUT_DIR} -r ${TEST_ROUTES_JSON}
 }
 
 exit_early_if_failure() {

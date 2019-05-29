@@ -1,5 +1,5 @@
 {
-  "name": "tarr",
+  "name": "tuscany",
   "version": "0.0.2",
   "description": "A command-line utility that accepts a JSON manifest of routes and generates a folder structure of URL helpers",
   "scripts": {
@@ -10,7 +10,7 @@
   "main": "./dist/url_helper_utils.js",
   "types": "./dist/url_helper_utils.d.ts",
   "bin": {
-    "tarr": "./bin/tarr"
+    "tuscany": "./bin/tuscany"
   },
   "author": "Robert Maloney (robertjamesmaloney@gmail.com)",
   "license": "ISC",
@@ -49,7 +49,7 @@
       "json"
     ],
     "moduleNameMapper": {
-      "^tarr$": "<rootDir>/dist/route_utils"
+      "^tuscany$": "<rootDir>/dist/route_utils"
     }
   },
   "publishConfig": {

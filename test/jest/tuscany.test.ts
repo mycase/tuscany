@@ -6,7 +6,7 @@ const userRoute = requireRoute('user', 'user');
 const documentsRoute = requireRoute('document', 'documents');
 const documentVersionRoute = requireRoute('document', 'document_version');
 
-describe('tarr', () => {
+describe('tuscany', () => {
   test('should generate simple routes', () => {
     expect(usersRoute()).toEqual('/users');
     expect(documentsRoute()).toEqual('/documents');
