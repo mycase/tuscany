@@ -1,6 +1,6 @@
 import * as yargs from 'yargs';
 import generateHelperSourceCode from './url_helper_generator';
-import RouteFileSystem from './fs';
+import SourceFileSystem from './fs';
 import parseRoutes from './parse_routes';
 
 async function main() {
@@ -15,15 +15,15 @@ async function main() {
     .argv;
 
   const routesLocation = argv.routes as string;
-  const routeDirectory = argv.directory as string;
+  const sourceDirectory = argv.directory as string;
   console.log(`Parsing routes at ${routesLocation}`);
   const routesConfig = parseRoutes(routesLocation);
-  const rfs = new RouteFileSystem(routeDirectory);
+  const sfs = new SourceFileSystem(sourceDirectory);
 
-  console.log(`Clearing existing routes from folder ${routeDirectory}`);
-  await rfs.clearRoutesDirectory();
+  console.log(`Clearing existing routes from folder ${sourceDirectory}`);
+  await sfs.clearHelpersDirectory();
 
-  console.log(`Generating routes from manifest into folder ${routeDirectory}`);
+  console.log(`Generating routes from manifest into folder ${sourceDirectory}`);
 
   await Promise.all(
     Object.keys(routesConfig).map(controllerName =>
@@ -37,7 +37,7 @@ async function main() {
             };
           }
           const helperSource = generateHelperSourceCode(routeInfo.path, routeInfo.req);
-          return rfs.writeRoute(controllerName, routeName, helperSource);
+          return sfs.writeHelper(controllerName, routeName, helperSource);
         })
       )
     )
