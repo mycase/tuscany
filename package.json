@@ -1,6 +1,6 @@
 {
   "name": "tuscany",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A command-line utility that accepts a JSON manifest of routes and generates a folder structure of URL helpers",
   "scripts": {
     "build": "tsc",
