@@ -20,11 +20,10 @@ async function main() {
   const routesConfig = parseRoutes(routesLocation);
   const sfs = new SourceFileSystem(sourceDirectory);
 
-  console.log(`Clearing existing routes from folder ${sourceDirectory}`);
-  await sfs.clearHelpersDirectory();
+  console.log(`Preparing helpers directory ${sourceDirectory}`);
+  await sfs.initializeHelpersDirectory();
 
   console.log(`Generating routes from manifest into folder ${sourceDirectory}`);
-
   await Promise.all(
     Object.keys(routesConfig).map(controllerName =>
       Promise.all(

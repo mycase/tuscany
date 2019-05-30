@@ -3,8 +3,7 @@ readonly OUTPUT_DIR=./test/test_output
 readonly TEST_ROUTES_JSON=./test/routes.json
 
 clean_output_directory() {
-  rm -rf ${OUTPUT_DIR} &&
-    mkdir ${OUTPUT_DIR}
+  rm -rf ${OUTPUT_DIR}
 }
 
 generate_routes() {
