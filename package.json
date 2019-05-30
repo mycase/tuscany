@@ -49,7 +49,7 @@
       "json"
     ],
     "moduleNameMapper": {
-      "^tuscany$": "<rootDir>/dist/route_utils"
+      "^tuscany$": "<rootDir>/dist/url_helper_utils"
     }
   },
   "publishConfig": {
