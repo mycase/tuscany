@@ -16,6 +16,10 @@ async function main() {
 
   const routesLocation = argv.routes as string;
   const sourceDirectory = argv.directory as string;
+  await generateRouteModules(routesLocation, sourceDirectory);
+}
+
+async function generateRouteModules(routesLocation: string, sourceDirectory: string) {
   console.log(`Parsing routes at ${routesLocation}`);
   const routesConfig = parseRoutes(routesLocation);
   const sfs = new SourceFileSystem(sourceDirectory);
@@ -43,6 +47,6 @@ async function main() {
   );
 }
 
-export { main };
+export { generateRouteModules, main };
 
 export { generateFormatAndQuery } from './url_helper_utils';
