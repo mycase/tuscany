@@ -44,3 +44,5 @@ async function main() {
 }
 
 export { main };
+
+export { generateFormatAndQuery } from './url_helper_utils';
