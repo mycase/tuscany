@@ -7,8 +7,8 @@
     "watch": "tsc --watch",
     "test": "npm run build && ./scripts/test.sh"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/url_helper_utils.js",
+  "types": "./dist/url_helper_utils.d.ts",
   "bin": {
     "tuscany": "./bin/tuscany"
   },
@@ -49,7 +49,7 @@
       "json"
     ],
     "moduleNameMapper": {
-      "^tuscany$": "<rootDir>/dist"
+      "^tuscany$": "<rootDir>/dist/url_helper_utils"
     }
   },
   "publishConfig": {
