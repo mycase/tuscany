@@ -11,7 +11,7 @@ async function generateRouteModules(routesLocation: string, sourceDirectory: str
   await sfs.initializeHelpersDirectory();
 
   console.log(`Generating routes from manifest into folder ${sourceDirectory}`);
-  await Promise.all(
+  return Promise.all(
     Object.keys(routesConfig).map(controllerName =>
       Promise.all(
         Object.keys(routesConfig[controllerName]).map((routeName) => {
