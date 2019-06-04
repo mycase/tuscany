@@ -1,21 +1,8 @@
-import * as yargs from 'yargs';
 import generateHelperSourceCode from './url_helper_generator';
 import SourceFileSystem from './fs';
 import parseRoutes from './parse_routes';
 
-async function main() {
-  const argv = yargs
-    .usage('Usage: $0 -d [folder] -r [routes_json]')
-    .demand(['d', 'r'])
-    .string(['d', 'r'])
-    .describe('d', 'Directory to output generated routes')
-    .describe('r', 'Location of a JSON route manifest')
-    .alias('d', 'directory')
-    .alias('r', 'routes')
-    .argv;
-
-  const routesLocation = argv.routes as string;
-  const sourceDirectory = argv.directory as string;
+async function generateRouteModules(routesLocation: string, sourceDirectory: string) {
   console.log(`Parsing routes at ${routesLocation}`);
   const routesConfig = parseRoutes(routesLocation);
   const sfs = new SourceFileSystem(sourceDirectory);
@@ -43,4 +30,6 @@ async function main() {
   );
 }
 
-main();
+export { generateRouteModules };
+
+export { generateFormatAndQuery } from './url_helper_utils';
