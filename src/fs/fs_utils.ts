@@ -1,17 +1,6 @@
 import * as fs from 'fs';
+import { promisify } from 'util';
 
-export function mkdir(path: string): Promise<undefined> {
-  return new Promise((resolve, reject) => {
-    fs.mkdir(path, (err) => {
-      if (err) { reject(err); } else { resolve(); }
-    });
-  });
-}
+export const mkdir = promisify(fs.mkdir);
+export const writeFile = promisify(fs.writeFile);
 
-export function writeFile(path: string, data: string): Promise<undefined> {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(path, data, (err) => {
-      if (err) { reject(err); } else { resolve(); }
-    });
-  });
-}
