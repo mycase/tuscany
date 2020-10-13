@@ -1,4 +1,8 @@
 # Tuscany
+
+A command-line utility that accepts a JSON manifest of routes and generates a
+folder structure of URL helpers
+
 ```bash
 Usage: tuscany -d [folder] -r [routes_json]
 
