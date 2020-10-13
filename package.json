@@ -51,8 +51,5 @@
     "moduleNameMapper": {
       "^tuscany$": "<rootDir>/dist/url_helper_utils"
     }
-  },
-  "publishConfig": {
-    "registry": "https://nexus.dev.appf.io/repository/npm-hosted/"
   }
 }
