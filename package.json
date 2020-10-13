@@ -3,6 +3,7 @@
   "version": "0.0.9",
   "description": "A command-line utility that accepts a JSON manifest of routes and generates a folder structure of URL helpers",
   "repository": "mycase/tuscany",
+  "license": "MIT",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
@@ -14,7 +15,6 @@
     "tuscany": "./bin/tuscany"
   },
   "author": "Robert Maloney (robertjamesmaloney@gmail.com)",
-  "license": "ISC",
   "devDependencies": {
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.18",
