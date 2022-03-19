@@ -13,7 +13,7 @@ export default (path: string, requiredArguments: string[]) => {
     const requiredParamSeparator = paramString ? ', ' : '';
 
     return (
-`const { generateFormatAndQuery } = require('tuscany');
+`import { generateFormatAndQuery } from 'tuscany';
 ${requiredArgDefinition}
 function route(${paramString}): string;
 function route(${paramString}${requiredParamSeparator}format: string): string;
