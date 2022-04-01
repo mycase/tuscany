@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "target": "es2017",
+    "lib": ["es2017"],
+    "module": "commonjs",
+    "outDir": "./dist",
+    "declaration": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "paths": {
+      "tuscany": ["./dist/url_helper_utils"]
+    }
+  },
+  "include": [
+    "src"
+  ]
+}

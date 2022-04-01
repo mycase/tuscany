@@ -42,6 +42,11 @@
         "statements": 100
       }
     },
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "<rootDir>/tsconfig.test.json"
+      }
+    },
     "roots": [
       "<rootDir>/test/jest"
     ],
