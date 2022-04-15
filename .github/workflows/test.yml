@@ -9,9 +9,9 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [10.x, 12.x, 14.x, 16.x]
         include:
-          - node-version: 14.x
+          - node-version: 16.x
             measure_coverage: true
 
     steps:
